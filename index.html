@@ -12,47 +12,40 @@
 <body>
   <main>
     <!-- SIDEBAR -->
-    <div id="sidebar" class="spaced">
+    <div id="sidebar" class="spaced nav">
       <div id="nav">
         <div id="bar"></div>
         <div id="nav-select">
-          <a href="">LI</a>
-          <a href="">GH</a>
+          <a id="li" href="" class="nav sans">LI</a>
+          <a id="gh" href="" class="nav sans">GH</a>
+          <a id="cp" href="" class="nav sans">CP</a>
         </div>
       </div>
-      <div id="cpt">© 2022</div>
+      <div id="cpt" class="nav sans">© 2022</div>
     </div>
+
     <!-- HOME -->
+    <span id="home-btn" class="nav sans">HOME</span>
     <article id="home">
-      <div id="intro" class="sans">
-        <span class="bold spaced">MATT LORBER</span><br><br>
-        <span>Curriculum developer, teacher & programmer</span><br><br>
-        <span>Currently working freelance</span>
-      </div>
-      <div id="links">
-        <div id="work" class="medium link">WORK</div>
-        <div id="about" class="medium link">ABOUT</div>
-        <div id="contact-link" class="medium link">CONTACT</div>
-      </div>
+      <aside id="intro">
+        <span class="bold spaced sans">MATTLORBER</span>
+      </aside>
+      <section id="pgs" class="serif">
+        <div id="work" class="medium pg"></div>
+        <div id="about" class="medium pg"></div>
+        <div id="contact" class="medium pg"></div>
+      </section>
     </article>
-    <!-- CONTACT -->
-    <!-- <article id="contact">
-      <div class="large">Hello</div>
-      <div id="home-what">
-        <span>I can help design your next curriculum<br></span>
-        <span>Fill in <a href="" target="_blank">this web form</a></span>
-        <br><br>
-        <span>Email:mlorber.dev@outlook.com</span><br>
-        <span>On the web: </span>
-        <span><a href="" target="_blank">LinkedIn</a>, </span>
-        <span><a href="" target="_blank">LinkedIn</a>, </span>
-        <span><a href="" target="_blank">LinkedIn</a>, </span>
-        <span><a href="" target="_blank">LinkedIn</a>, </span>
-        <span><a href="" target="_blank">LinkedIn</a> </span>
-      </div>
-    </article> -->
+
+    <!-- CONTENT PP -->
+    <article id="content">
+      <section id="content-work" class="content"></section>
+      <section id="content-about" class="content"></section>
+      <section id="content-contact" class="content"></section>
+    </article>
 
   </main>
+  <script src="./assets/script/index.js"></script>
 </body>
 
 </html>

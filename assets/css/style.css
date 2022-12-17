@@ -1,8 +1,10 @@
-@import url('https://fonts.googleapis.com/css2?family=Open+Sans:wght@300&display=swap');
-@import url('https://fonts.googleapis.com/css2?family=Cormorant:wght@300&display=swap');
 @font-face {
-  font-family: 'decondor';
-  src: url(./decondor.ttf);
+  font-family: soligant;
+  src: url(./Soligant.ttf);
+}
+@font-face {
+  font-family: msans;
+  src: url(./sans.otf);
 }
 
 * {
@@ -11,28 +13,39 @@
   /* outline: 1px solid #80808056; */
   -webkit-user-select: none;
   user-select: none;
+  text-rendering: optimizeLegibility;
 }
 
 body {
   background: #ddd;
-  color: #222;
+  color: #333;
   position: absolute;
   top: 0;
   left: 0;
   width: 100vw;
   height: 100vh;
   font-size: 22px;
-  font-family: 'Open Sans', sans-serif;
+}
+
+body,
+a {
+  cursor: url("data:image/svg+xml,%3Csvg width='8mm' height='8mm' viewBox='0 0 8 8' xmlns='http://www.w3.org/2000/svg'%3E%3Ccircle cx='4' cy='4' r='3.5' style='fill:none;stroke:%23111;stroke-width:.5;opacity:.6;'/%3E%3C/svg%3E") 7 7, default;
 }
 
 a,
 a:visited {
-  color: #111;
+  color: #222;
   text-decoration: none;
+  border-radius: 5%;
+  transition: background-color .6s linear;
+}
+
+a:hover {
+  background-color: #bbb;
 }
 
 .bold {
-  font-weight:800;
+  font-weight: 800;
 }
 
 .large {
@@ -43,6 +56,11 @@ a:visited {
 .medium {
   font-size: 20vh;
   margin-bottom: -1.5rem;
+}
+
+.small {
+  font-size: 7.5vh;
+  margin-bottom: -1.2rem;
 }
 
 /* SIDEBAR */
@@ -58,6 +76,7 @@ a:visited {
   font-family: sans-serif;
   display: flex;
   align-items: center;
+  z-index: 200;
 }
 
 #nav {
@@ -65,23 +84,39 @@ a:visited {
   right: 0;
   display: flex;
   flex-direction: row;
+  font-size: .6rem;
+  font-weight:100;
 }
 
 #nav,
 #cpt {
   padding: .5rem 3rem;
 }
-#nav-select > a {
-  padding:1rem;
+#nav-select {
+  color:red;
 }
+
+#nav-select>a {
+  padding: 1rem;
+}
+
 #bar {
   width: 4rem;
   height: .35rem;
-  border-bottom: 1px solid #222;
+  border-bottom: 1px solid #444;
   margin-right: 1rem;
 }
 
 /* HOME */
+#home-btn {
+  position:fixed;
+  top:4vh;
+  right:4vw;
+  color:#ddd;
+  z-index:1;
+  display:none;
+  font-size:.8rem;
+}
 
 #home {
   position: fixed;
@@ -89,49 +124,91 @@ a:visited {
 }
 
 .sans {
-  font-family: 'Open Sans', sans-serif;
-  font-size:.6rem;
-}
-.serif {
-  font-family: 'Cormorant', serif;
-}
-.spaced {
-  letter-spacing: 4px;
+  font-family:msans;
 }
 
-#links {
+.serif {
+  font-family: soligant;
+}
+
+.spaced {
+  letter-spacing: 4px;
+  font-weight: 600;
+}
+
+#pgs {
   position: absolute;
-  left:40vw;
-  top:0;
-  width:50vw;
+  left: 40vw;
+  top: 0;
+  width: 50vw;
   height: 100vh;
   display: flex;
   flex-direction: column;
   justify-content: center;
-  font-family:'Cormorant';
-  color:#111;
-}
-.link {
-  cursor:pointer;
-  transition: transform .2s linear;
-}
-.link:hover {
-  transform: skew(-5deg, 0) translateX(10px);
-}
-#intro {
-  position:fixed;
-  bottom:20vh;
-  left:15vw;
-  font-size:8pt;
-  color:#111;
+  color: #222;
 }
 
-/* HELLO */
-#contact {
-  font-family: 'decondor';
-  display: flex;
-  flex-direction: column;
+#work::before {
+  content:"WORK";
+}
+#about::before {
+  content: "ABOUT";
+}
+#contact::before {
+  content: "CONTACT";
+}
+.pg {
+  transition: transform .3s linear;
+}
+
+.pg:hover {
+  transform: skew(-5deg, 0) translateX(10px);
+}
+
+#intro {
   position: fixed;
-  left: 4rem;
-  padding: 5rem;
+  bottom: 20vh;
+  left: 15vw;
+  font-size: .8rem;
+  color: #111;
+}
+
+/* CONTENT */
+
+.content {
+  width: 100vw;
+  height: 100vh;
+  background-color: #222;
+  color: #ddd;
+  position: fixed;
+  top:100vh;
+  left:0;
+  transition:top .5s linear, border-radius .3s;
+  border-top-left-radius: 50vw;
+  border-top-right-radius: 50vw;
+}
+
+/* RESPONSIVE */
+
+@media screen and (max-width: 650px) {
+  #work::before {
+      content: "WK";
+    }
+  
+    #about::before {
+      content: "ABT";
+    }
+  
+    #contact::before {
+      content: "CO";
+    }
+    #pgs {
+      left:5vw;
+    }
+    #intro {
+      width:100vw;
+      left:0;
+      bottom:2rem;
+      text-align: center;
+    }
 }
