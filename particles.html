@@ -1,0 +1,109 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Playground | Particles</title>
+  <style>
+    * {
+      cursor: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='10' height='10'%3E%3Ccircle cx='5' cy='5' r='4.5' fill='%23777'/%3E%3C/svg%3E") 5 5,
+        default;
+    }
+
+    body,
+    canvas {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100vw;
+      height: 100vh;
+      margin: 0;
+      background-color: #fff;
+    }
+
+    body {
+      overflow: hidden;
+      display: flex;
+      justify-content: center;
+    }
+
+    button {
+      position: absolute;
+      top: 15px;
+      left: 15px;
+    }
+  </style>
+</head>
+
+<body>
+  <canvas id="c"></canvas>
+  <button id="cp">change</button>
+</body>
+<script src="./assets/script/palettes.js"></script>
+<script>
+
+    !function () {
+        const tau = 2 * Math.PI;
+        const ps = [];
+        let hues = palettes[6];
+        const btn = document.getElementById("cp");
+        const canvas = document.getElementById("c");
+        let w = canvas.width = innerWidth;
+        let h = canvas.height = innerHeight;
+        const ctx = canvas.getContext("2d");
+
+        class P {
+            constructor(x, y) {
+                this.x = x;
+                this.y = y;
+                this.v = 10;
+                this.t = Math.random() * tau;
+                this.r = 20;
+                this.hue = hues[Math.floor(Math.random() * 5)];
+            }
+        }
+
+        btn.addEventListener("click", changePalette);
+        window.addEventListener("mousemove", mousemove);
+
+        void function init() {
+            for (let i = 0; i < 50; i++) ps.push(new P(w / 2, h / 2));
+            loop();
+        }();
+
+        function loop() {
+            ctx.clearRect(0, 0, w, h);
+
+            for (let i = 0; i < ps.length; i++) {
+                if (ps[i].r < 1) ps.splice(i, 1);
+                else {
+                    ps[i].r -= .25;
+                    ps[i].v -= .5;
+                    ps[i].t += .2;
+                    ps[i].x += Math.cos(ps[i].t) * ps[i].v;
+                    ps[i].y += Math.sin(ps[i].t) * ps[i].v;
+                    ctx.fillStyle = ps[i].hue;
+                    ctx.beginPath();
+                    ctx.arc(ps[i].x, ps[i].y, ps[i].r, 0, tau);
+                    ctx.closePath();
+                    ctx.fill();
+                }
+            }
+
+            requestAnimationFrame(loop);
+        }
+
+        function mousemove(e) {
+            ps.push(new P(e.clientX, e.clientY));
+        }
+
+        function changePalette() {
+            hues = palettes[Math.floor(Math.random() * palettes.length)];
+        }
+
+    }();
+</script>
+
+</html>
